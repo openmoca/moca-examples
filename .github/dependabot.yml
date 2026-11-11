@@ -1,0 +1,15 @@
+# Weekly update PRs, and immediate PRs for security advisories.
+version: 2
+updates:
+  - package-ecosystem: nuget
+    directory: /dotnet
+    schedule:
+      interval: weekly
+  - package-ecosystem: npm
+    directory: /typescript
+    schedule:
+      interval: weekly
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

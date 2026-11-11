@@ -1,0 +1,93 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+# The other MOCA repositories, at fixed refs: release tags, or commits while a Spec Change
+# Proposal is in flight; never a branch (moca-spec CONTRIBUTING.md).
+env:
+  MOCA_SPEC_REF: v0.6.0
+  MOCA_READER_TYPESCRIPT_REF: v0.6.0
+  MOCA_READER_DOTNET_REF: v0.6.0
+
+jobs:
+  deps:
+    name: Public dependencies only
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: moca-examples
+      # The check lives in moca-spec, the one copy every open repository runs.
+      - uses: actions/checkout@v7
+        with:
+          repository: ${{ github.repository_owner }}/moca-spec
+          ref: ${{ env.MOCA_SPEC_REF }}
+          path: moca-spec
+          # Read access to the other MOCA repos while they are private.
+          token: ${{ secrets.MOCA_REPOS_TOKEN || github.token }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: node moca-spec/scripts/check-deps.mjs moca-examples
+
+  typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: moca-examples
+      - uses: actions/checkout@v7
+        with:
+          repository: ${{ github.repository_owner }}/moca-spec
+          ref: ${{ env.MOCA_SPEC_REF }}
+          path: moca-spec
+          # Read access to the other MOCA repos while they are private.
+          token: ${{ secrets.MOCA_REPOS_TOKEN || github.token }}
+      - uses: actions/checkout@v7
+        with:
+          repository: ${{ github.repository_owner }}/moca-reader-typescript
+          ref: ${{ env.MOCA_READER_TYPESCRIPT_REF }}
+          path: moca-reader-typescript
+          token: ${{ secrets.MOCA_REPOS_TOKEN || github.token }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: npm ci
+        working-directory: moca-reader-typescript
+      - run: npm ci
+        working-directory: moca-examples/typescript
+      - run: npm test
+        working-directory: moca-examples/typescript
+
+  dotnet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: moca-examples
+      - uses: actions/checkout@v7
+        with:
+          repository: ${{ github.repository_owner }}/moca-spec
+          ref: ${{ env.MOCA_SPEC_REF }}
+          path: moca-spec
+          # Read access to the other MOCA repos while they are private.
+          token: ${{ secrets.MOCA_REPOS_TOKEN || github.token }}
+      - uses: actions/checkout@v7
+        with:
+          repository: ${{ github.repository_owner }}/moca-reader-dotnet
+          ref: ${{ env.MOCA_READER_DOTNET_REF }}
+          path: moca-reader-dotnet
+          token: ${{ secrets.MOCA_REPOS_TOKEN || github.token }}
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: moca-examples/dotnet/global.json
+      - run: dotnet build moca-examples.slnx -c Release
+        working-directory: moca-examples/dotnet
+      - run: dotnet test --project Moca.Examples.Tests -c Release --no-build
+        working-directory: moca-examples/dotnet

@@ -1,0 +1,19 @@
+{
+  "name": "moca-examples-typescript",
+  "private": true,
+  "version": "0.6.0",
+  "description": "MOCA developer examples in TypeScript: a CLI and a basic chat.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "cli": "node cli.js",
+    "chat": "node chat.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "@openmoca/moca-core": "file:../../moca-reader-typescript"
+  }
+}

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>moca-chat</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- The .NET Reader, from a moca-reader-dotnet checkout beside this repository until it is on NuGet. -->
+    <ProjectReference Include="..\..\..\moca-reader-dotnet\src\OpenMoca.Reader\OpenMoca.Reader.csproj" />
+    <PackageReference Include="Microsoft.Extensions.AI.OpenAI" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>moca-cli</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- The .NET Reader, from a moca-reader-dotnet checkout beside this repository until it is on NuGet. -->
+    <ProjectReference Include="..\..\..\moca-reader-dotnet\src\OpenMoca.Reader\OpenMoca.Reader.csproj" />
+  </ItemGroup>
+</Project>

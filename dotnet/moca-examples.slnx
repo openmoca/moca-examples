@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Moca.Examples.Cli/Moca.Examples.Cli.csproj" />
+  <Project Path="Moca.Examples.Chat/Moca.Examples.Chat.csproj" />
+  <Project Path="Moca.Examples.Tests/Moca.Examples.Tests.csproj" />
+</Solution>

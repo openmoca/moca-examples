@@ -1,0 +1,14 @@
+# .NET build output
+[Bb]in/
+[Oo]bj/
+*.user
+.vs/
+
+# Node
+node_modules/
+
+# Editors and OS
+.idea/
+.vscode/
+.claude/
+.DS_Store
