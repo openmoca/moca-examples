@@ -16,18 +16,15 @@ The example packages are in
 
 ## Set up
 
-Check out moca-spec and the Reader you want beside this repository:
+The Readers come from npm and NuGet. The examples read the example packages
+from a moca-spec checkout beside this repository:
 
 ```text
 moca-spec/
-moca-reader-typescript/   for typescript/
-moca-reader-dotnet/       for dotnet/
 moca-examples/
 ```
 
-Until the Readers are on npm and NuGet, the examples use them from those
-checkouts. The tests find moca-spec beside this repository, or in
-`MOCA_SPEC_DIR`. CI uses the tags pinned at the top of `.github/workflows/test.yml`
+The tests find moca-spec there, or in `MOCA_SPEC_DIR`. CI uses the tags pinned at the top of `.github/workflows/test.yml`
 (`MOCA_SPEC_REF` and the like); check out the same tags to match it.
 
 ## Run the examples
@@ -42,7 +39,6 @@ node's citation record, then chat over it.
 Node.js 22 or later.
 
 ```sh
-(cd ../moca-reader-typescript && npm install)
 cd typescript && npm install
 
 node cli.js open   ../../moca-spec/examples/support-kb

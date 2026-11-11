@@ -6,6 +6,10 @@
 
   <!-- The chat example talks to any OpenAI-compatible endpoint through the provider-neutral IChatClient. -->
   <ItemGroup>
+    <PackageVersion Include="OpenMoca.Reader" Version="0.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageVersion Include="Microsoft.Extensions.AI.OpenAI" Version="10.11.0" />
   </ItemGroup>
 
