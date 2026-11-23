@@ -2,6 +2,14 @@
 
 All notable changes to the MOCA examples. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.7.0] - 2026-11-23
+
+### Changed
+
+- Versions follow moca-spec 0.7.0: the examples use the 0.7.0 Readers
+  (`@openmoca/moca-core` and `OpenMoca.Reader`), and the test workflow pins
+  moca-spec to the 0.7.0 release commit.
+
 ## [0.6.0] - 2026-11-11
 
 ### Changed
